@@ -61,6 +61,15 @@ namespace uWaveCommander {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Save to flash.
+        /// </summary>
+        internal static string Main_Form_SaveToFlash {
+            get {
+                return ResourceManager.GetString("Main_Form_SaveToFlash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Close application?.
         /// </summary>
         internal static string MainForm_ApplicationClosePrompt {

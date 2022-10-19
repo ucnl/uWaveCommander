@@ -118,78 +118,78 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MainForm_ApplicationClosePrompt" xml:space="preserve">
-    <value>Close application?</value>
+    <value>Закрыть приложение?</value>
   </data>
   <data name="MainForm_EntriesWereDeleted" xml:space="preserve">
-    <value>entry(s) was/were deleted</value>
+    <value>объектов было удалено</value>
   </data>
   <data name="MainForm_Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Ошибка</value>
   </data>
   <data name="MainForm_FilesWereDeleted" xml:space="preserve">
-    <value>file(s) was/were deleted</value>
+    <value>файлов было удалено</value>
   </data>
   <data name="MainForm_Information" xml:space="preserve">
-    <value>Information</value>
+    <value>Информация</value>
   </data>
   <data name="MainForm_LogArchiveDialogTitle" xml:space="preserve">
-    <value>Select a name of an archive to store all log files...</value>
+    <value>Выберите имя для файла архива...</value>
   </data>
   <data name="MainForm_LogArchiveResult" xml:space="preserve">
-    <value>All log files archived:</value>
+    <value>Все файлы журналов были архивированы:</value>
   </data>
   <data name="MainForm_LogDeleteAllEntriesPrompt" xml:space="preserve">
-    <value>Do you really want to delete all log files? (this action cannot be undone!)</value>
+    <value>Удалить все файлы журналов (действие не может быть отменено)?</value>
   </data>
   <data name="MainForm_LogDeleteEmptyEntriesPrompt" xml:space="preserve">
-    <value>Delete all log files smaller than 2 kB and empty folders?</value>
+    <value>Удалить все файлы журналов, размер которых не превышает 2 кБ?</value>
   </data>
   <data name="MainForm_LogFile" xml:space="preserve">
-    <value>Log file</value>
+    <value>Файл журнала</value>
   </data>
   <data name="MainForm_LogMoveToArchiveProblemsResult" xml:space="preserve">
-    <value>There were some problems while creating an archive file, log files were not deleted</value>
+    <value>Возникли проблемы при создании архива. Файлы журналов не были удалены</value>
   </data>
   <data name="MainForm_LogMoveToArchiveResult" xml:space="preserve">
-    <value>Log files were moved to archive:</value>
+    <value>Файлы журналов были перемещены в архив:</value>
   </data>
   <data name="MainForm_LogPlaybackAbortPrompt" xml:space="preserve">
-    <value>A log file is currently playing, abort it?</value>
+    <value>Воспроизводится файл журнала, прервать воспроизведение?</value>
   </data>
   <data name="MainForm_LogPlaybackSelectDialogTitle" xml:space="preserve">
-    <value>Select a log file to playback...</value>
+    <value>Выберите файл журнала для воспроизведения...</value>
   </data>
   <data name="MainForm_LogPlaybackStopBtnText" xml:space="preserve">
-    <value>Stop</value>
+    <value>Остановить</value>
   </data>
   <data name="MainForm_MoveLogsToArchivePrompt" xml:space="preserve">
-    <value>Do you really want to move all log file to an archive?</value>
+    <value>Переместить все файлы журналов в архив?</value>
   </data>
   <data name="MainForm_MoveLogsToArchivePromptTitle" xml:space="preserve">
-    <value>Select a name of archive to store all log files...</value>
+    <value>Выберите имя файла архива для файлов журналов...</value>
   </data>
   <data name="MainForm_Playback" xml:space="preserve">
-    <value>Playback...</value>
+    <value>Воспроизвести...</value>
   </data>
   <data name="MainForm_PlaybackIsFinished" xml:space="preserve">
-    <value>PLayback is finished</value>
+    <value>Воспроизведение завершено</value>
   </data>
   <data name="MainForm_Question" xml:space="preserve">
-    <value>Question</value>
+    <value>Вопрос</value>
   </data>
   <data name="MainForm_RestartPrompt" xml:space="preserve">
-    <value>Settings has been saved. Restart application to apply new settings?</value>
+    <value>Настройки были сохранены. Перезапустить приложение, чтобы новые настройки вступили в силу?</value>
   </data>
   <data name="MainForm_ScreenshotSaved" xml:space="preserve">
-    <value>Screenshot saved</value>
+    <value>Снимок экрана сохранен</value>
   </data>
   <data name="MainForm_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Настройки</value>
   </data>
   <data name="MainForm_Warning" xml:space="preserve">
-    <value>Warning!</value>
+    <value>Внимание!</value>
   </data>
   <data name="Main_Form_SaveToFlash" xml:space="preserve">
-    <value>Save to flash</value>
+    <value>Сохранить во флеш</value>
   </data>
 </root>

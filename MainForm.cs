@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using UCNLDrivers;
+using UCNLNMEA;
 using UCNLPhysics;
 using UCNLUI;
 using UCNLUI.Dialogs;
@@ -409,7 +410,20 @@ namespace uWaveCommander
         {
             get => Convert.ToInt32(aqpngPTTargetAddressEdit.Value);
             set => UIHelpers.SetNumericEditValue(aqpngPTTargetAddressEdit, value);
-        }            
+        }
+
+        #endregion
+
+
+        #region uiAutomation things
+
+        int mainTabPageIdx
+        {
+            get => mainTabControl.SelectedIndex;
+            set => mainTabControl.SelectedIndex = value;
+        }
+
+        UIAutomation uiAuto;
 
         #endregion
 
@@ -429,6 +443,8 @@ namespace uWaveCommander
         RCStatistics rcStats;
 
         #endregion
+
+        readonly string[] llSeparators = new string[] { " >> " };
 
         #endregion
 
@@ -516,23 +532,33 @@ namespace uWaveCommander
             lPlayer.NewLogLineHandler += (o, e) =>
             {
                 if (e.Line.StartsWith("INFO"))
+                {                        
+                    var splits = e.Line.Split(llSeparators, StringSplitOptions.RemoveEmptyEntries);
+                    if (splits.Length == 2)
+                    {
+                        if (splits[0].EndsWith("(UWV)"))
+                        {
+                            uPort.EmulateInput(splits[1] + NMEAParser.SentenceEndDelimiter);
+                        }
+                    }
+                }
+                else if (e.Line.StartsWith(UIAutomation.LogID))
                 {
                     int idx = e.Line.IndexOf(' ');
                     if (idx >= 0)
-                    {
-                        //azmBase.Emulate(e.Line.Substring(idx).Trim());
-                    }
+                        InvokePerformUIAction(e.Line.Substring(idx).Trim());
                 }
             };
             lPlayer.LogPlaybackFinishedHandler += (o, e) =>
             {
-                //azmBase.Stop();
+                uPort.Stop();
+                logger.Write(string.Format("Log playback finished: {0}", lPlayer.LogFileName));
 
                 if (InvokeRequired)
                 {
                     Invoke((MethodInvoker)delegate
-                    {
-                        linkBtn.Enabled = true;
+                    {                        
+                        linkBtn.Enabled = true;                        
                         logPlaybackBtn.Text = string.Format("▶ {0}", LocalisedStrings.MainForm_Playback);
                         MessageBox.Show(string.Format("{0} \"{1}\" {2}",
                             LocalisedStrings.MainForm_LogFile,
@@ -725,12 +751,10 @@ namespace uWaveCommander
                 else
                     OnDeviceInfoValidChanged();
             };
-
             uPort.IsWaitingLocalChanged += (o, e) =>
             {
                 UIHelpers.InvokeSetEnabledState(mainTabControl, !uPort.IsWaitingLocal);
             };
-
             uPort.RCTimeoutReceived += (o, e) =>
             {
                 InvokeAppendText(remReqTxb,
@@ -842,7 +866,6 @@ namespace uWaveCommander
                             lsChart.Series["Roll"].Points.Add(uPort.Roll_deg.Value);                        
                     });
             };
-
             uPort.PacketModeSettingsReceived += (o, e) =>
             {
                 if (InvokeRequired)
@@ -851,7 +874,6 @@ namespace uWaveCommander
                         ptModeLocalAddress = Convert.ToByte(uPort.PTAddress);
                     });
             };
-
             uPort.PacketReceived += (o, e) =>
             {
                 StringBuilder sb = new StringBuilder();
@@ -865,13 +887,11 @@ namespace uWaveCommander
                 sb.Append("\r\n");
                 InvokeAppendText(packetModeLogTxb, sb.ToString());
             };
-
             uPort.PacketRequestTimeout += (o, e) =>
             {
                 InvokeAppendText(packetModeLogTxb,
                     string.Format("#{0} >> {1} Timeout...\r\n", e.Target_ptAddress, e.DataId));
             };
-
             uPort.PacketResponse += (o, e) =>
             {
                 StringBuilder sb = new StringBuilder();
@@ -896,7 +916,6 @@ namespace uWaveCommander
 
                 InvokeAppendText(packetModeLogTxb, sb.ToString());
             };
-
             uPort.PacketTransferFailed += (o, e) =>
             {
                 InvokeAppendText(packetModeLogTxb,
@@ -905,7 +924,6 @@ namespace uWaveCommander
                     Encoding.ASCII.GetString(e.DataPacket),
                     e.TriesTaken));
             };
-
             uPort.PacketTransferred += (o, e) =>
             {
                 StringBuilder sb = new StringBuilder();
@@ -920,7 +938,6 @@ namespace uWaveCommander
                 sb.Append("\r\n");
                 InvokeAppendText(packetModeLogTxb, sb.ToString());
             };
-
             uPort.AQPNGSettingsReceived += (o, e) =>
             {
                 Invoke((MethodInvoker)delegate
@@ -934,6 +951,13 @@ namespace uWaveCommander
                     aqpngPTTargetAddress = e.PtTargetAddr;
                 });
             };
+
+            #endregion
+
+            #region uiAuto
+
+            uiAuto = new UIAutomation();
+            uiAuto.InitIntProperty<MainForm>(this, nameof(mainTabPageIdx));
 
             #endregion
         }
@@ -988,8 +1012,9 @@ namespace uWaveCommander
                     {
                         lPlayer.Playback(oDialog.FileName);
 
-                        logPlaybackBtn.Text = string.Format("⏹ {0}", LocalisedStrings.MainForm_LogPlaybackStopBtnText);
+                        logPlaybackBtn.Text = string.Format("⏹ {0}", LocalisedStrings.MainForm_LogPlaybackStopBtnText);                        
                         linkBtn.Enabled = false;
+                        logger.Write(string.Format("Starting log playback: {0}", lPlayer.LogFileName));
                     }
                 }
             }
@@ -1380,9 +1405,9 @@ namespace uWaveCommander
         {
             packetModeIsSaveToFlashBtn.Checked = !packetModeIsSaveToFlashBtn.Checked;
             if (packetModeIsSaveToFlashBtn.Checked)
-                packetModeIsSaveToFlashBtn.Text = "✔ Save to flash";
+                packetModeIsSaveToFlashBtn.Text = "✔" + LocalisedStrings.Main_Form_SaveToFlash;// Save to flash";
             else
-                packetModeIsSaveToFlashBtn.Text = "Save to flash";
+                packetModeIsSaveToFlashBtn.Text = LocalisedStrings.Main_Form_SaveToFlash;
         }
 
         private void ptModeSendRequestBtn_Click(object sender, EventArgs e)
@@ -1494,18 +1519,18 @@ namespace uWaveCommander
         {
             localSensors1IsSaveToFlashBtn.Checked = !localSensors1IsSaveToFlashBtn.Checked;
             if (localSensors1IsSaveToFlashBtn.Checked)
-                localSensors1IsSaveToFlashBtn.Text = "✔ Save to flash";
+                localSensors1IsSaveToFlashBtn.Text = "✔" + LocalisedStrings.Main_Form_SaveToFlash;
             else
-                localSensors1IsSaveToFlashBtn.Text = "Save to flash";
+                localSensors1IsSaveToFlashBtn.Text = LocalisedStrings.Main_Form_SaveToFlash;
         }
 
         private void localSensors2IsSaveToFlashBtn_Click(object sender, EventArgs e)
         {
             localSensors2IsSaveToFlashBtn.Checked = !localSensors2IsSaveToFlashBtn.Checked;
             if (localSensors2IsSaveToFlashBtn.Checked)
-                localSensors2IsSaveToFlashBtn.Text = "✔ Save to flash";
+                localSensors2IsSaveToFlashBtn.Text = "✔" + LocalisedStrings.Main_Form_SaveToFlash;
             else
-                localSensors2IsSaveToFlashBtn.Text = "Save to flash";
+                localSensors2IsSaveToFlashBtn.Text = LocalisedStrings.Main_Form_SaveToFlash;
         }
 
         private void ls1ApplyBtn_Click(object sender, EventArgs e)
@@ -1777,6 +1802,14 @@ namespace uWaveCommander
 
         #region UI Invokers
 
+        private void InvokePerformUIAction(string uiActionName)
+        {
+            if (this.InvokeRequired)
+                this.Invoke((MethodInvoker)delegate { uiAuto.PerformUIAction(uiActionName); });
+            else
+                uiAuto.PerformUIAction(uiActionName);
+        }
+
         private void RemoteRequestsAuto()
         {
             try
@@ -1847,6 +1880,11 @@ namespace uWaveCommander
 
         #endregion
 
-        #endregion        
+        #endregion
+
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            logger.Write(uiAuto.GetPropertyStateLogString<MainForm>(this, nameof(mainTabPageIdx))); 
+        }
     }
 }
