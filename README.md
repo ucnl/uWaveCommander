@@ -45,6 +45,19 @@ To disable the feature:
 ### 4. Working with Short command requests
 
 Go to tab **Remote requests** and press **AUTO** button. The application will start to invoke the modem sending sort remote requests.
-If you have the second device properly set up and turned on, you will see something like on the following pic:
+If you have the second device properly set up and turned on, you will see something like the following pic:
 
 ![fig4](https://github.com/ucnl/uWaveCommander/blob/main/Pics/16-00-42.Png)
+
+### 5. Packet mode
+
+Go to tab **Packet mode**. 
+Here you can:
+- send packet requests (similar to short requests, but performed with logical addressing among 255 devices)
+- send data packets with guaranteed delivery
+- received data packets 
+
+Here is a relevant screenshot:
+
+![fig5](https://github.com/ucnl/uWaveCommander/blob/main/Pics/16-02-19.Png)
+
