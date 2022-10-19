@@ -29,10 +29,22 @@ You will see information about the device: FW version, serial number etc.
 You can see real-time plots of readings of built-in sensors - pressure, depth, temperature, voltage etc.
 To enable the feature:
 
-#### Go to tab **Local Sensors** and check following buttons: **P, mBar**, **🌡, °C**, **🡇, m** and **⚡, V**.
-#### Select **1_SEC** in the **Update period, msec** combobox
-#### Press **🡇 APPLY** button
+#### 1. Go to tab **Local Sensors** and check following buttons: **P, mBar**, **🌡, °C**, **🡇, m** and **⚡, V**.
+#### 2. Select **1_SEC** in the **Update period, msec** combobox
+#### 3. Press **🡇 APPLY** button
 
 You will see something like that:  
 
 ![fig3](/Pics/15-54-53.Png)
+
+To disable the feature:
+
+#### 1. select **NEVER** in the **Update period, msec** combobox
+#### 2. Press **🡇 APPLY** button
+
+### 4. Working with Short command requests
+
+Go to tab **Remote requests** and press **AUTO** button. The application will start to invoke the modem sending sort remote requests.
+If you have the second device properly set up and turned on, you will see something like on the following pic:
+
+![fig4](https://github.com/ucnl/uWaveCommander/blob/main/Pics/16-00-42.Png)
