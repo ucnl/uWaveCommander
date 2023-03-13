@@ -12,7 +12,7 @@ Before connecting to a PC, make sure that **CMD** wire is connected to **GND**
 
 ![fig1](https://docs.unavlab.com/documentation/uwave_usb_cmd_mode_off.png)
 
-After connecting to your PC, you have to connect **CMD** wire to logic one (3.3 or 5 V) to enable [command mode]() in your modem:
+After connecting to your PC, you have to connect **CMD** wire to logic one (3.3 or 5 V) to enable [command mode](https://docs.unavlab.com/documentation/EN/uWAVE/uWAVE_Family_en.html#32-command-mode) in your modem:
 
 ![fig2](https://docs.unavlab.com/documentation/uwave_usb_cmd_mode_on.png)
 
@@ -45,7 +45,7 @@ To disable the feature:
 ### 4. Working with Short command requests
 
 Go to tab **Remote requests** and press **AUTO** button. The application will start to invoke the modem sending sort remote requests.
-If you have the second device properly set up and turned on, you will see something like the following pic:
+If you have the second device from the [uWave devices family](https://docs.unavlab.com/documentation/EN/uWAVE/uWAVE_Family_en.html) properly set up and turned on, you will see something like the following pic:
 
 ![fig4](https://github.com/ucnl/uWaveCommander/blob/main/Pics/16-00-42.Png)
 
