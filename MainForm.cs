@@ -451,7 +451,7 @@ namespace uWaveCommander
         #region Constructor
 
         public MainForm()
-        {
+        {            
             #region Early init
 
             string[] args = Environment.GetCommandLineArgs();
@@ -799,7 +799,7 @@ namespace uWaveCommander
                 if (e.IsAzimuthPresent)
                 {
                     sb.AppendFormat(CultureInfo.InvariantCulture, ", ɑ={0:F01}°", e.Azimuth);
-                    rcStats.AddMeasurement("AZM", e.Azimuth);
+                    rcStats.AddMeasurement("AZM, °", e.Azimuth);
                 }
                 sb.Append("\r\n");
 
@@ -879,10 +879,10 @@ namespace uWaveCommander
                 StringBuilder sb = new StringBuilder();
                 sb.AppendFormat("#{0} >> \"{1}\"",
                     e.Target_ptAddress,
-                    Encoding.ASCII.GetString(e.DataPacket));
+                    Encoding.ASCII.GetString(e.DataPacket));                
 
                 if (!double.IsNaN(e.Azimuth))
-                    sb.AppendFormat(CultureInfo.InvariantCulture, ", 𝛂={0:F01}°");
+                    sb.AppendFormat(CultureInfo.InvariantCulture, ", 𝛂={0:F01}°", e.Azimuth);
 
                 sb.Append("\r\n");
                 InvokeAppendText(packetModeLogTxb, sb.ToString());
@@ -911,9 +911,13 @@ namespace uWaveCommander
                 else if (e.DataId == DataID_Enum.DID_BAT)
                     sb.Append(" V");
 
-                sb.AppendFormat(")\r\n⮡ Tp={0:F05} sec ({1:F02} m)\r\n",
+                sb.AppendFormat(")\r\n⮡ Tp={0:F05} sec ({1:F02} m)",
                     e.PropagationTime_s, range_m);
 
+                if (!double.IsNaN(e.Azimuth))
+                    sb.AppendFormat(CultureInfo.InvariantCulture, ", 𝛂={0:F01}°", e.Azimuth);
+
+                sb.Append("\r\n");
                 InvokeAppendText(packetModeLogTxb, sb.ToString());
             };
             uPort.PacketTransferFailed += (o, e) =>
@@ -933,7 +937,7 @@ namespace uWaveCommander
                     e.TriesTaken);
 
                 if (!double.IsNaN(e.Azimuth))
-                    sb.AppendFormat(CultureInfo.InvariantCulture, ", 𝛂={0:F01}°");
+                    sb.AppendFormat(CultureInfo.InvariantCulture, ", 𝛂={0:F01}°", e.Azimuth);
 
                 sb.Append("\r\n");
                 InvokeAppendText(packetModeLogTxb, sb.ToString());
