@@ -465,7 +465,7 @@ namespace uWaveCommander.uWave
                 // IC_D2H_PT_FAILED          $PUWVH,tareget_ptAddress,triesTaken,data
                 NMEAParser.AddProprietarySentenceDescription(ManufacturerCodes.UWV, "H", "x,x,h--h");
 
-                // IC_D2H_PT_DLVRD           $PUWVI,tareget_ptAddress,triesTaken,[azimuth],data
+                // IC_D2H_PT_DLVRD           $PUWVI,tareget_ptAddress,[azimuth],triesTaken,data
                 NMEAParser.AddProprietarySentenceDescription(ManufacturerCodes.UWV, "I", "x,x,x.x,h--h");
 
                 // IC_D2H_PT_RCVD            $PUWVJ,sender_ptAddress,[azimuth],data
@@ -510,9 +510,8 @@ namespace uWaveCommander.uWave
                     (sntID == ICs.IC_H2D_PT_ITG))
                 {
                     IsWaitingRemote = true;
-                    StartTimer(4000);
+                    StartTimer(6000);
                 }
-
 
                 ACKReceived.Rise(this, new ACKReceivedEventArgs(sntID, errID));
             }
@@ -730,7 +729,7 @@ namespace uWaveCommander.uWave
             {
                 byte target_ptAddress = Convert.ToByte(uWave.O2I(parameters[0]));
                 byte triesTaken = Convert.ToByte(uWave.O2I(parameters[1]));
-                double azimuth = uWave.O2D(parameters[2]);
+                double azimuth = uWave.O2D(parameters[2]);                               
                 byte[] dataPacket = (byte[])parameters[3];
 
                 PacketTransferred.Rise(this, new PacketEventArgs(target_ptAddress, triesTaken, azimuth, dataPacket));
