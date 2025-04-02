@@ -4,7 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UCNLDrivers;
+using UCNLNav;
 
 namespace uWaveCommander
 {
@@ -18,7 +20,13 @@ namespace uWaveCommander
         public double MinValue { get; private set; }
         public double MaxValue { get; private set; }
 
+        public double MeanValue { get; private set; }
+
+        public double Sigma { get; private set; }
+
         public string FmtString { get; private set; }
+
+        public List<double> vals { get; private set; }
 
         #endregion
 
@@ -27,6 +35,7 @@ namespace uWaveCommander
         public StatValue(string fmtString)
         {
             FmtString = fmtString;
+            vals = new List<double>();
             Clear();
         }
 
@@ -40,6 +49,9 @@ namespace uWaveCommander
             LastValue = double.NaN;
             MinValue = double.MaxValue;
             MaxValue = double.MinValue;
+            MeanValue = double.NaN;
+            Sigma = double.NaN;
+            vals.Clear();
         }
 
         public void Add(double nextValue)
@@ -49,16 +61,50 @@ namespace uWaveCommander
                 MaxValue = nextValue;
             if (nextValue < MinValue)
                 MinValue = nextValue;
+
+            vals.Add(nextValue);
+            double sum = 0.0;
+            double sigma = 0.0;
+
+            foreach (var item in vals)
+            {
+                sum += item;
+            }
+
+            MeanValue = sum / vals.Count;
+
+            foreach (var item in vals)
+            {
+                sigma += Math.Pow(item - MeanValue, 2);
+            }
+
+            Sigma = sigma / vals.Count;
+
             TotalSamples++;
+        }
+
+        public string GetValuesToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var val in vals)
+            {
+                sb.Append(val.ToString(FmtString, CultureInfo.InvariantCulture));
+                sb.Append(", ");
+            }
+
+            return sb.ToString();
         }
 
         public override string ToString()
         {
             if (TotalSamples > 0)
             {
-                return string.Format("{0} .. {1}, {2} ({3} smps)",
+                return string.Format("{0} .. {1} .. {2}, {3}, {4} ({5} smps)",
                     MinValue.ToString(FmtString, CultureInfo.InvariantCulture),
+                    MeanValue.ToString(FmtString, CultureInfo.InvariantCulture),
                     MaxValue.ToString(FmtString, CultureInfo.InvariantCulture),
+                    Sigma.ToString(FmtString, CultureInfo.InvariantCulture),
                     LastValue.ToString(FmtString, CultureInfo.InvariantCulture),
                     TotalSamples);
             }
@@ -90,6 +136,11 @@ namespace uWaveCommander
         #endregion
 
         #region Methods
+
+        public StatValue GetStatValue(string id)
+        {
+            return statValues[id];
+        }
 
         public void InitStatValue(string key, string fmtString)
         {

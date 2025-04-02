@@ -151,11 +151,11 @@ namespace uWaveCommander
             }
         }
 
-        bool remReqIsAuto
-        {
-            get => isRemoteRequestsAutoChb.Checked;
-            set => isRemoteRequestsAutoChb.Checked = value;
-        }
+        bool remReqIsAuto = false;
+        int remReqLimit = 0;
+        int remReqCnt = 0;
+
+        bool isAutoCode = true;
 
         #endregion
 
@@ -552,6 +552,11 @@ namespace uWaveCommander
             lPlayer.LogPlaybackFinishedHandler += (o, e) =>
             {
                 uPort.Stop();
+
+                //
+                logger.Write(rcStats.GetStatValue("PTM, s").GetValuesToString());
+                //
+
                 logger.Write(string.Format("Log playback finished: {0}", lPlayer.LogFileName));
 
                 if (InvokeRequired)
@@ -712,6 +717,7 @@ namespace uWaveCommander
 
             rcStats = new RCStatistics();
             rcStats.InitStatValue("AZM, °", "F01");
+            rcStats.InitStatValue("PTM, s", "F06");
             rcStats.InitStatValue("DST, m", "F03");
             rcStats.InitStatValue("MSR, dB", "F01");
             rcStats.InitStatValue("BAT, V", "F01");
@@ -759,22 +765,27 @@ namespace uWaveCommander
             {
                 InvokeAppendText(remReqTxb,
                     string.Format("(Tx={0}:Rx={1}) >> {2} Timeout...\r\n",
-                    e.TxChID, e.RxChID, e.RCCmdID));
+                    e.RxChID, e.TxChID, e.RCCmdID));
 
                 rcStats.AddFail();
             };
             uPort.RCResponseReceived += (o, e) =>
-            {                
+            {
                 var range_m = e.PropTime_sec * wpManager.SoundSpeed;
+
+                rcStats.AddMeasurement("PTM, s", e.PropTime_sec);
 
                 StringBuilder sb = new StringBuilder();
                 sb.AppendFormat(CultureInfo.InvariantCulture,
                     "(Tx={0}:Rx={1}) >> {2} OK!\r\n ⮡ Tp={3:F05} sec ({4:F02} m), MSR={5:F01} dB",
+                    e.RxChID,
                     e.TxChID, 
-                    e.RxChID, 
                     e.RCCmdID,
                     e.PropTime_sec, range_m,
-                    e.MSR_db);                
+                    e.MSR_db);
+
+                if (remReqIsAuto)
+                    logger.Write(string.Format("DST={0:F03}", range_m));
 
                 if (e.IsValuePresent)
                 {
@@ -851,20 +862,24 @@ namespace uWaveCommander
             uPort.PTCROLDataUpdated += (o, e) =>
             {
                 if (lsChart.InvokeRequired)
+                {
                     lsChart.Invoke((MethodInvoker)delegate
-                    {
-                        if (!lsChart.ChartAreas[4].Visible)
-                        {
-                            lsChart.ChartAreas[4].Visible = true;
-                            lsChart.ChartAreas[5].Visible = true;
-                        }
-
+                    {                        
                         if (uPort.Pitch_deg.IsInitialized)
                             lsChart.Series["Pitch"].Points.Add(uPort.Pitch_deg.Value);
 
-                        if (uPort.Temperature_C.IsInitialized)
-                            lsChart.Series["Roll"].Points.Add(uPort.Roll_deg.Value);                        
+                        if (uPort.Roll_deg.IsInitialized)
+                            lsChart.Series["Roll"].Points.Add(uPort.Roll_deg.Value);
                     });
+                }
+                else
+                {
+                    if (uPort.Pitch_deg.IsInitialized)
+                        lsChart.Series["Pitch"].Points.Add(uPort.Pitch_deg.Value);
+
+                    if (uPort.Roll_deg.IsInitialized)
+                        lsChart.Series["Roll"].Points.Add(uPort.Roll_deg.Value);
+                }
             };
             uPort.PacketModeSettingsReceived += (o, e) =>
             {
@@ -1014,6 +1029,7 @@ namespace uWaveCommander
 
                     if (oDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
+                        rcStats.Clear();
                         lPlayer.Playback(oDialog.FileName);
 
                         logPlaybackBtn.Text = string.Format("⏹ {0}", LocalisedStrings.MainForm_LogPlaybackStopBtnText);                        
@@ -1334,14 +1350,25 @@ namespace uWaveCommander
 
         #region remReqTab
 
-        private void isRemoteRequestsAutoChb_Click(object sender, EventArgs e)
+        #region AUTO btn
+
+        private void switchRemRequestsAuto(int numberOfRequests, bool isAutoCodeChange)
         {
+
+            isAutoCode = isAutoCodeChange;
+
             remReqIsAuto = !remReqIsAuto;
 
             remReqTxChIDCbx.Enabled = !remReqIsAuto;
             remReqRxChIDCbx.Enabled = !remReqIsAuto;
             remReqIDCbx.Enabled = !remReqIsAuto;
             remReqSendBtn.Enabled = !remReqIsAuto;
+
+            isRemoteRequestsAuto1024Chb.Checked = false;
+            isRemoteRequestsAuto512Chb.Checked = false;
+            isRemoteRequestsAuto256Chb.Checked = false;
+            isRemoteRequestsFullyAutoChb.Checked = false;
+            isRemoteRequestsAuto128Chb.Checked = false;
 
             foreach (var tabPage in mainTabControl.TabPages)
                 ((Control)tabPage).Enabled = !remReqIsAuto;
@@ -1352,18 +1379,69 @@ namespace uWaveCommander
             {
                 isRemoteRequestsAutoChb.Text = "✔ AUTO";
 
+                remReqLimit = numberOfRequests;
+                remReqCnt = 0;
+
+                logger.Write(string.Format("REMREQ AUTO ({0}) START", numberOfRequests));                
+
                 rcStats.Clear();
                 remReqSendBtn_Click(null, null);
             }
             else
+            {
                 isRemoteRequestsAutoChb.Text = "AUTO";
+                logger.Write("REMREQ AUTO STOP");
+
+                //
+                //logger.Write(rcStats.GetStatValue("PTM, s").GetValuesToString());
+                //
+            }
+        }        
+
+        private void isRemoteRequestsAuto1024Chb_Click(object sender, EventArgs e)
+        {
+            switchRemRequestsAuto(1024, true);
+            isRemoteRequestsAuto1024Chb.Checked = remReqIsAuto;
         }
+
+        private void isRemoteRequestsAuto512Chb_Click(object sender, EventArgs e)
+        {
+            switchRemRequestsAuto(512, true);
+            isRemoteRequestsAuto512Chb.Checked = remReqIsAuto;
+        }
+
+        private void isRemoteRequestsAuto256Chb_Click(object sender, EventArgs e)
+        {
+            switchRemRequestsAuto(256, true);
+            isRemoteRequestsAuto256Chb.Checked = remReqIsAuto;
+        }
+
+        private void isRemoteRequestsFullyAutoChb_Click(object sender, EventArgs e)
+        {
+            switchRemRequestsAuto(int.MaxValue, true);
+            isRemoteRequestsFullyAutoChb.Checked = remReqIsAuto;
+        }
+
+        private void isRemoteRequestsAuto128Chb_Click(object sender, EventArgs e)
+        {
+            switchRemRequestsAuto(128, true);
+            isRemoteRequestsAuto128Chb.Checked = remReqIsAuto;
+        }
+
+
+        private void isRemoteRequestsFullyAutoFixedChb_Click(object sender, EventArgs e)
+        {
+            switchRemRequestsAuto(int.MaxValue, false);
+            isRemoteRequestsFullyAutoFixedChb.Checked = remReqIsAuto;
+        }
+
+        #endregion
 
         private void remReqSendBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (uPort.Query_RC(remReqTxChID, remReqRxChID, remReqID))
+                if (uPort.Query_RC(remReqRxChID, remReqTxChID, remReqID))
                 {
                     remReqTxb.AppendText(string.Format("(Tx={0}:Rx={1}) << {2} ?...\r\n",
                         remReqTxChID, remReqRxChID, remReqID));
@@ -1543,6 +1621,12 @@ namespace uWaveCommander
             {
                 uPort.Query_AMB_CFG_WRITE(lsIsSaveToFlash1,
                     (int)lsUpdatePeriod1, lsIsPressure, lsIsTemperature, lsIsDepth, lsIsVoltage);
+
+                lsChart.ChartAreas[0].Visible = lsIsPressure;
+                lsChart.ChartAreas[1].Visible = lsIsTemperature;
+                lsChart.ChartAreas[2].Visible = lsIsDepth;
+                lsChart.ChartAreas[3].Visible = lsIsVoltage;               
+
             }
             catch (Exception ex)
             {
@@ -1555,6 +1639,14 @@ namespace uWaveCommander
             try
             {
                 uPort.Query_PTCROL_CFG_WRITE(lsIsSaveToFlash2, (int)lsUpdatePeriod2);
+
+                if ((!lsChart.ChartAreas[4].Visible) && (lsUpdatePeriod2 != 0))
+                {
+                    lsChart.ChartAreas[4].Visible = true;
+                    lsChart.ChartAreas[5].Visible = true;
+                    pitchDegBtn.Checked = true;
+                    rollDegBtn.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -1799,8 +1891,8 @@ namespace uWaveCommander
             }
             else
             {
-                if (isRemoteRequestsAutoChb.Checked)
-                    isRemoteRequestsAutoChb_Click(null, null);
+                if (remReqIsAuto)
+                    switchRemRequestsAuto(0, true);
             }
         }
 
@@ -1816,21 +1908,36 @@ namespace uWaveCommander
 
         private void RemoteRequestsAuto()
         {
-            try
+            if (++remReqCnt >= remReqLimit)
             {
-                var r_code = remReqAutoCodes[remReqAutoCodeIdx];
-
-                if (uPort.Query_RC(remReqTxChID, remReqRxChID, r_code))
-                {
-                    InvokeAppendText(remReqTxb, string.Format("(Tx={0}:Rx={1}) << {2} ?...\r\n",
-                        remReqTxChID, remReqRxChID, r_code));
-
-                    remReqAutoCodeIdx = (remReqAutoCodeIdx + 1) % remReqAutoCodes.Length;
-                }
+                var lim = remReqLimit;
+                switchRemRequestsAuto(0, true);
+                MessageBox.Show(string.Format("{0} requests performed.", lim), "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (Exception ex)
+            else
             {
-                ProcessException(ex, false);
+
+                try
+                {
+                    var r_code = RC_CODES_Enum.RC_INVALID;
+
+                    if (isAutoCode)
+                        r_code = remReqAutoCodes[remReqAutoCodeIdx];
+                    else
+                        r_code = remReqID;
+
+                    if (uPort.Query_RC(remReqRxChID, remReqTxChID, r_code))
+                    {
+                        InvokeAppendText(remReqTxb, string.Format("(Tx={0}:Rx={1}) << {2} ?...\r\n",
+                            remReqTxChID, remReqRxChID, r_code));
+
+                        remReqAutoCodeIdx = (remReqAutoCodeIdx + 1) % remReqAutoCodes.Length;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ProcessException(ex, false);
+                }
             }
         }
 
@@ -1889,6 +1996,45 @@ namespace uWaveCommander
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             logger.Write(uiAuto.GetPropertyStateLogString<MainForm>(this, nameof(mainTabPageIdx))); 
+        }
+
+
+
+
+        private void rollDegBtn_Click(object sender, EventArgs e)
+        {
+            lsChart.ChartAreas[5].Visible = !lsChart.ChartAreas[5].Visible;
+            rollDegBtn.Checked = lsChart.ChartAreas[5].Visible;
+        }
+
+        private void pitchDegBtn_Click(object sender, EventArgs e)
+        {
+            lsChart.ChartAreas[4].Visible = !lsChart.ChartAreas[4].Visible;
+            pitchDegBtn.Checked = lsChart.ChartAreas[4].Visible;
+        }
+
+        private void voltageVBtn_Click(object sender, EventArgs e)
+        {
+            lsChart.ChartAreas[3].Visible = !lsChart.ChartAreas[3].Visible;
+            voltageVBtn.Checked = lsChart.ChartAreas[3].Visible;
+        }
+
+        private void depthmBtn_Click(object sender, EventArgs e)
+        {
+            lsChart.ChartAreas[2].Visible = !lsChart.ChartAreas[2].Visible;
+            depthmBtn.Checked = lsChart.ChartAreas[2].Visible;
+        }
+
+        private void temperaturedegCBtn_Click(object sender, EventArgs e)
+        {
+            lsChart.ChartAreas[1].Visible = !lsChart.ChartAreas[1].Visible;
+            temperaturedegCBtn.Checked = lsChart.ChartAreas[1].Visible;
+        }
+
+        private void pressuremBarBtn_Click(object sender, EventArgs e)
+        {
+            lsChart.ChartAreas[0].Visible = !lsChart.ChartAreas[0].Visible;
+            pressuremBarBtn.Checked = lsChart.ChartAreas[0].Visible;
         }
     }
 }

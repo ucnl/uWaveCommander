@@ -84,7 +84,14 @@
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.remReqIDCbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.isRemoteRequestsAutoChb = new System.Windows.Forms.ToolStripButton();
+            this.isRemoteRequestsAutoChb = new System.Windows.Forms.ToolStripDropDownButton();
+            this.isRemoteRequestsFullyAutoChb = new System.Windows.Forms.ToolStripMenuItem();
+            this.isRemoteRequestsAuto1024Chb = new System.Windows.Forms.ToolStripMenuItem();
+            this.isRemoteRequestsAuto512Chb = new System.Windows.Forms.ToolStripMenuItem();
+            this.isRemoteRequestsAuto256Chb = new System.Windows.Forms.ToolStripMenuItem();
+            this.isRemoteRequestsAuto128Chb = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.isRemoteRequestsFullyAutoFixedChb = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.remReqSendBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
@@ -208,6 +215,14 @@
             this.portStatusLbl = new System.Windows.Forms.ToolStripLabel();
             this.screenShotBtn = new System.Windows.Forms.ToolStripButton();
             this.logLbl = new System.Windows.Forms.ToolStripLabel();
+            this.lsBVisibleItemsBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.pressuremBarBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.temperaturedegCBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.depthmBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.voltageVBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
+            this.pitchDegBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.rollDegBtn = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).BeginInit();
             this.mainSplit.Panel1.SuspendLayout();
             this.mainSplit.Panel2.SuspendLayout();
@@ -566,9 +581,57 @@
             // isRemoteRequestsAutoChb
             // 
             this.isRemoteRequestsAutoChb.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.isRemoteRequestsAutoChb.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isRemoteRequestsFullyAutoChb,
+            this.isRemoteRequestsAuto1024Chb,
+            this.isRemoteRequestsAuto512Chb,
+            this.isRemoteRequestsAuto256Chb,
+            this.isRemoteRequestsAuto128Chb,
+            this.toolStripSeparator2,
+            this.isRemoteRequestsFullyAutoFixedChb});
             resources.ApplyResources(this.isRemoteRequestsAutoChb, "isRemoteRequestsAutoChb");
             this.isRemoteRequestsAutoChb.Name = "isRemoteRequestsAutoChb";
-            this.isRemoteRequestsAutoChb.Click += new System.EventHandler(this.isRemoteRequestsAutoChb_Click);
+            // 
+            // isRemoteRequestsFullyAutoChb
+            // 
+            this.isRemoteRequestsFullyAutoChb.Name = "isRemoteRequestsFullyAutoChb";
+            resources.ApplyResources(this.isRemoteRequestsFullyAutoChb, "isRemoteRequestsFullyAutoChb");
+            this.isRemoteRequestsFullyAutoChb.Click += new System.EventHandler(this.isRemoteRequestsFullyAutoChb_Click);
+            // 
+            // isRemoteRequestsAuto1024Chb
+            // 
+            this.isRemoteRequestsAuto1024Chb.Name = "isRemoteRequestsAuto1024Chb";
+            resources.ApplyResources(this.isRemoteRequestsAuto1024Chb, "isRemoteRequestsAuto1024Chb");
+            this.isRemoteRequestsAuto1024Chb.Click += new System.EventHandler(this.isRemoteRequestsAuto1024Chb_Click);
+            // 
+            // isRemoteRequestsAuto512Chb
+            // 
+            this.isRemoteRequestsAuto512Chb.Name = "isRemoteRequestsAuto512Chb";
+            resources.ApplyResources(this.isRemoteRequestsAuto512Chb, "isRemoteRequestsAuto512Chb");
+            this.isRemoteRequestsAuto512Chb.Click += new System.EventHandler(this.isRemoteRequestsAuto512Chb_Click);
+            // 
+            // isRemoteRequestsAuto256Chb
+            // 
+            this.isRemoteRequestsAuto256Chb.Name = "isRemoteRequestsAuto256Chb";
+            resources.ApplyResources(this.isRemoteRequestsAuto256Chb, "isRemoteRequestsAuto256Chb");
+            this.isRemoteRequestsAuto256Chb.Click += new System.EventHandler(this.isRemoteRequestsAuto256Chb_Click);
+            // 
+            // isRemoteRequestsAuto128Chb
+            // 
+            this.isRemoteRequestsAuto128Chb.Name = "isRemoteRequestsAuto128Chb";
+            resources.ApplyResources(this.isRemoteRequestsAuto128Chb, "isRemoteRequestsAuto128Chb");
+            this.isRemoteRequestsAuto128Chb.Click += new System.EventHandler(this.isRemoteRequestsAuto128Chb_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // isRemoteRequestsFullyAutoFixedChb
+            // 
+            this.isRemoteRequestsFullyAutoFixedChb.Name = "isRemoteRequestsFullyAutoFixedChb";
+            resources.ApplyResources(this.isRemoteRequestsFullyAutoFixedChb, "isRemoteRequestsFullyAutoFixedChb");
+            this.isRemoteRequestsFullyAutoFixedChb.Click += new System.EventHandler(this.isRemoteRequestsFullyAutoFixedChb_Click);
             // 
             // toolStripSeparator12
             // 
@@ -1104,7 +1167,8 @@
             resources.ApplyResources(this.localSensorsBottomToolStrip, "localSensorsBottomToolStrip");
             this.localSensorsBottomToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.localSensorsBottomToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lsChartsClearBtn});
+            this.lsChartsClearBtn,
+            this.lsBVisibleItemsBtn});
             this.localSensorsBottomToolStrip.Name = "localSensorsBottomToolStrip";
             // 
             // lsChartsClearBtn
@@ -1518,6 +1582,69 @@
             resources.ApplyResources(this.logLbl, "logLbl");
             this.logLbl.Click += new System.EventHandler(this.logLbl_Click);
             // 
+            // lsBVisibleItemsBtn
+            // 
+            this.lsBVisibleItemsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.lsBVisibleItemsBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rollDegBtn,
+            this.pitchDegBtn,
+            this.toolStripSeparator40,
+            this.voltageVBtn,
+            this.depthmBtn,
+            this.temperaturedegCBtn,
+            this.pressuremBarBtn});
+            resources.ApplyResources(this.lsBVisibleItemsBtn, "lsBVisibleItemsBtn");
+            this.lsBVisibleItemsBtn.Name = "lsBVisibleItemsBtn";
+            // 
+            // pressuremBarBtn
+            // 
+            this.pressuremBarBtn.Checked = true;
+            this.pressuremBarBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pressuremBarBtn.Name = "pressuremBarBtn";
+            resources.ApplyResources(this.pressuremBarBtn, "pressuremBarBtn");
+            this.pressuremBarBtn.Click += new System.EventHandler(this.pressuremBarBtn_Click);
+            // 
+            // temperaturedegCBtn
+            // 
+            this.temperaturedegCBtn.Checked = true;
+            this.temperaturedegCBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.temperaturedegCBtn.Name = "temperaturedegCBtn";
+            resources.ApplyResources(this.temperaturedegCBtn, "temperaturedegCBtn");
+            this.temperaturedegCBtn.Click += new System.EventHandler(this.temperaturedegCBtn_Click);
+            // 
+            // depthmBtn
+            // 
+            this.depthmBtn.Checked = true;
+            this.depthmBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.depthmBtn.Name = "depthmBtn";
+            resources.ApplyResources(this.depthmBtn, "depthmBtn");
+            this.depthmBtn.Click += new System.EventHandler(this.depthmBtn_Click);
+            // 
+            // voltageVBtn
+            // 
+            this.voltageVBtn.Checked = true;
+            this.voltageVBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.voltageVBtn.Name = "voltageVBtn";
+            resources.ApplyResources(this.voltageVBtn, "voltageVBtn");
+            this.voltageVBtn.Click += new System.EventHandler(this.voltageVBtn_Click);
+            // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            resources.ApplyResources(this.toolStripSeparator40, "toolStripSeparator40");
+            // 
+            // pitchDegBtn
+            // 
+            this.pitchDegBtn.Name = "pitchDegBtn";
+            resources.ApplyResources(this.pitchDegBtn, "pitchDegBtn");
+            this.pitchDegBtn.Click += new System.EventHandler(this.pitchDegBtn_Click);
+            // 
+            // rollDegBtn
+            // 
+            this.rollDegBtn.Name = "rollDegBtn";
+            resources.ApplyResources(this.rollDegBtn, "rollDegBtn");
+            this.rollDegBtn.Click += new System.EventHandler(this.rollDegBtn_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1645,7 +1772,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripComboBox remReqIDCbx;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripButton isRemoteRequestsAutoChb;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripButton remReqSendBtn;
         private System.Windows.Forms.ToolStrip remoteRequestsBottomToolStrip;
@@ -1760,6 +1886,22 @@
         private System.Windows.Forms.CheckBox aqpngIsPTModeChb;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown aqpngPTTargetAddressEdit;
+        private System.Windows.Forms.ToolStripDropDownButton isRemoteRequestsAutoChb;
+        private System.Windows.Forms.ToolStripMenuItem isRemoteRequestsFullyAutoChb;
+        private System.Windows.Forms.ToolStripMenuItem isRemoteRequestsAuto1024Chb;
+        private System.Windows.Forms.ToolStripMenuItem isRemoteRequestsAuto512Chb;
+        private System.Windows.Forms.ToolStripMenuItem isRemoteRequestsAuto256Chb;
+        private System.Windows.Forms.ToolStripMenuItem isRemoteRequestsAuto128Chb;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem isRemoteRequestsFullyAutoFixedChb;
+        private System.Windows.Forms.ToolStripDropDownButton lsBVisibleItemsBtn;
+        private System.Windows.Forms.ToolStripMenuItem rollDegBtn;
+        private System.Windows.Forms.ToolStripMenuItem pitchDegBtn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.ToolStripMenuItem voltageVBtn;
+        private System.Windows.Forms.ToolStripMenuItem depthmBtn;
+        private System.Windows.Forms.ToolStripMenuItem temperaturedegCBtn;
+        private System.Windows.Forms.ToolStripMenuItem pressuremBarBtn;
     }
 }
 
