@@ -1477,6 +1477,8 @@ namespace uWaveCommander
         private void remReqTxbClearBtn_Click(object sender, EventArgs e)
         {
             remReqTxb.Clear();
+            rcStats.Clear();
+            remReqStatTxb.Clear();
         }
 
         #endregion
