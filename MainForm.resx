@@ -532,7 +532,7 @@
     <value>7</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>531, 406</value>
+    <value>563, 382</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -559,7 +559,7 @@
     <value>Consolas, 12pt</value>
   </data>
   <data name="deviceInfoTxb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>541, 47</value>
+    <value>575, 47</value>
   </data>
   <data name="deviceInfoTxb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -568,7 +568,7 @@
     <value>Horizontal</value>
   </data>
   <data name="deviceInfoTxb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>628, 406</value>
+    <value>602, 374</value>
   </data>
   <data name="deviceInfoTxb.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -709,7 +709,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="deviceSettingsTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1181, 467</value>
+    <value>1181, 435</value>
   </data>
   <data name="deviceSettingsTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1177,7 +1177,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="packetModeLogTxb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1160, 310</value>
+    <value>1160, 307</value>
   </data>
   <data name="packetModeLogTxb.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1360,7 +1360,7 @@
     <value>6, 41</value>
   </data>
   <data name="packetModeBottom2ToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 385</value>
+    <value>4, 382</value>
   </data>
   <data name="packetModeBottom2ToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>1173, 41</value>
@@ -1507,7 +1507,7 @@
     <value>6, 41</value>
   </data>
   <data name="packetModeBottomToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 426</value>
+    <value>4, 423</value>
   </data>
   <data name="packetModeBottomToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>1173, 41</value>
@@ -1663,7 +1663,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="ptModeTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1181, 470</value>
+    <value>1181, 467</value>
   </data>
   <data name="ptModeTab.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2653,7 +2653,7 @@
     <value>11</value>
   </data>
   <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1173, 423</value>
+    <value>1173, 420</value>
   </data>
   <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2794,7 +2794,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="aqpngTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1181, 470</value>
+    <value>1181, 467</value>
   </data>
   <data name="aqpngTab.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2817,6 +2817,9 @@
   <data name="mainTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="mainTabControl.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mainTabControl.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 13.8pt</value>
   </data>
@@ -2827,7 +2830,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="mainTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 518</value>
+    <value>1189, 486</value>
   </data>
   <data name="mainTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2856,20 +2859,20 @@
   <data name="&gt;&gt;mainSplit.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="logTxb.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="logTxb.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="logTxb.Font" type="System.Drawing.Font, System.Drawing">
     <value>Consolas, 12pt</value>
   </data>
   <data name="logTxb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 47</value>
+    <value>0, 47</value>
   </data>
   <data name="logTxb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
   </data>
   <data name="logTxb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1179, 163</value>
+    <value>1189, 192</value>
   </data>
   <data name="logTxb.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3061,10 +3064,10 @@
     <value>1</value>
   </data>
   <data name="mainSplit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 777</value>
+    <value>1189, 730</value>
   </data>
   <data name="mainSplit.SplitterDistance" type="System.Int32, mscorlib">
-    <value>518</value>
+    <value>486</value>
   </data>
   <data name="mainSplit.SplitterWidth" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3082,7 +3085,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mainSplit.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="mainToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -3304,7 +3307,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mainToolStrip.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="bottomToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>480, 17</value>
@@ -3370,7 +3373,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bottomToolStrip.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3900,6 +3903,54 @@
   <data name="&gt;&gt;lsChartsClearBtn.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;lsBVisibleItemsBtn.Name" xml:space="preserve">
+    <value>lsBVisibleItemsBtn</value>
+  </data>
+  <data name="&gt;&gt;lsBVisibleItemsBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rollDegBtn.Name" xml:space="preserve">
+    <value>rollDegBtn</value>
+  </data>
+  <data name="&gt;&gt;rollDegBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pitchDegBtn.Name" xml:space="preserve">
+    <value>pitchDegBtn</value>
+  </data>
+  <data name="&gt;&gt;pitchDegBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator40.Name" xml:space="preserve">
+    <value>toolStripSeparator40</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator40.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;voltageVBtn.Name" xml:space="preserve">
+    <value>voltageVBtn</value>
+  </data>
+  <data name="&gt;&gt;voltageVBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;depthmBtn.Name" xml:space="preserve">
+    <value>depthmBtn</value>
+  </data>
+  <data name="&gt;&gt;depthmBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;temperaturedegCBtn.Name" xml:space="preserve">
+    <value>temperaturedegCBtn</value>
+  </data>
+  <data name="&gt;&gt;temperaturedegCBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pressuremBarBtn.Name" xml:space="preserve">
+    <value>pressuremBarBtn</value>
+  </data>
+  <data name="&gt;&gt;pressuremBarBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;aqpngQueryBtn.Name" xml:space="preserve">
     <value>aqpngQueryBtn</value>
   </data>
@@ -4085,54 +4136,6 @@
   </data>
   <data name="&gt;&gt;logLbl.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lsBVisibleItemsBtn.Name" xml:space="preserve">
-    <value>lsBVisibleItemsBtn</value>
-  </data>
-  <data name="&gt;&gt;lsBVisibleItemsBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pressuremBarBtn.Name" xml:space="preserve">
-    <value>pressuremBarBtn</value>
-  </data>
-  <data name="&gt;&gt;pressuremBarBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;temperaturedegCBtn.Name" xml:space="preserve">
-    <value>temperaturedegCBtn</value>
-  </data>
-  <data name="&gt;&gt;temperaturedegCBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;depthmBtn.Name" xml:space="preserve">
-    <value>depthmBtn</value>
-  </data>
-  <data name="&gt;&gt;depthmBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;voltageVBtn.Name" xml:space="preserve">
-    <value>voltageVBtn</value>
-  </data>
-  <data name="&gt;&gt;voltageVBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator40.Name" xml:space="preserve">
-    <value>toolStripSeparator40</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator40.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pitchDegBtn.Name" xml:space="preserve">
-    <value>pitchDegBtn</value>
-  </data>
-  <data name="&gt;&gt;pitchDegBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rollDegBtn.Name" xml:space="preserve">
-    <value>rollDegBtn</value>
-  </data>
-  <data name="&gt;&gt;rollDegBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

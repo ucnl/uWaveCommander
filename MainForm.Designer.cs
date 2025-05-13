@@ -161,6 +161,14 @@
             this.toolStripSeparator36 = new System.Windows.Forms.ToolStripSeparator();
             this.localSensorsBottomToolStrip = new System.Windows.Forms.ToolStrip();
             this.lsChartsClearBtn = new System.Windows.Forms.ToolStripButton();
+            this.lsBVisibleItemsBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.rollDegBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.pitchDegBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
+            this.voltageVBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.depthmBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.temperaturedegCBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.pressuremBarBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.aqpngTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
@@ -215,14 +223,6 @@
             this.portStatusLbl = new System.Windows.Forms.ToolStripLabel();
             this.screenShotBtn = new System.Windows.Forms.ToolStripButton();
             this.logLbl = new System.Windows.Forms.ToolStripLabel();
-            this.lsBVisibleItemsBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.pressuremBarBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.temperaturedegCBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.depthmBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.voltageVBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
-            this.pitchDegBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.rollDegBtn = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).BeginInit();
             this.mainSplit.Panel1.SuspendLayout();
             this.mainSplit.Panel2.SuspendLayout();
@@ -1179,6 +1179,69 @@
             this.lsChartsClearBtn.Name = "lsChartsClearBtn";
             this.lsChartsClearBtn.Click += new System.EventHandler(this.lsChartClearBtn_Click);
             // 
+            // lsBVisibleItemsBtn
+            // 
+            this.lsBVisibleItemsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.lsBVisibleItemsBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rollDegBtn,
+            this.pitchDegBtn,
+            this.toolStripSeparator40,
+            this.voltageVBtn,
+            this.depthmBtn,
+            this.temperaturedegCBtn,
+            this.pressuremBarBtn});
+            resources.ApplyResources(this.lsBVisibleItemsBtn, "lsBVisibleItemsBtn");
+            this.lsBVisibleItemsBtn.Name = "lsBVisibleItemsBtn";
+            // 
+            // rollDegBtn
+            // 
+            this.rollDegBtn.Name = "rollDegBtn";
+            resources.ApplyResources(this.rollDegBtn, "rollDegBtn");
+            this.rollDegBtn.Click += new System.EventHandler(this.rollDegBtn_Click);
+            // 
+            // pitchDegBtn
+            // 
+            this.pitchDegBtn.Name = "pitchDegBtn";
+            resources.ApplyResources(this.pitchDegBtn, "pitchDegBtn");
+            this.pitchDegBtn.Click += new System.EventHandler(this.pitchDegBtn_Click);
+            // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            resources.ApplyResources(this.toolStripSeparator40, "toolStripSeparator40");
+            // 
+            // voltageVBtn
+            // 
+            this.voltageVBtn.Checked = true;
+            this.voltageVBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.voltageVBtn.Name = "voltageVBtn";
+            resources.ApplyResources(this.voltageVBtn, "voltageVBtn");
+            this.voltageVBtn.Click += new System.EventHandler(this.voltageVBtn_Click);
+            // 
+            // depthmBtn
+            // 
+            this.depthmBtn.Checked = true;
+            this.depthmBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.depthmBtn.Name = "depthmBtn";
+            resources.ApplyResources(this.depthmBtn, "depthmBtn");
+            this.depthmBtn.Click += new System.EventHandler(this.depthmBtn_Click);
+            // 
+            // temperaturedegCBtn
+            // 
+            this.temperaturedegCBtn.Checked = true;
+            this.temperaturedegCBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.temperaturedegCBtn.Name = "temperaturedegCBtn";
+            resources.ApplyResources(this.temperaturedegCBtn, "temperaturedegCBtn");
+            this.temperaturedegCBtn.Click += new System.EventHandler(this.temperaturedegCBtn_Click);
+            // 
+            // pressuremBarBtn
+            // 
+            this.pressuremBarBtn.Checked = true;
+            this.pressuremBarBtn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pressuremBarBtn.Name = "pressuremBarBtn";
+            resources.ApplyResources(this.pressuremBarBtn, "pressuremBarBtn");
+            this.pressuremBarBtn.Click += new System.EventHandler(this.pressuremBarBtn_Click);
+            // 
             // aqpngTab
             // 
             this.aqpngTab.Controls.Add(this.tableLayoutPanel2);
@@ -1374,6 +1437,7 @@
             resources.ApplyResources(this.logTxb, "logTxb");
             this.logTxb.Name = "logTxb";
             this.logTxb.ReadOnly = true;
+            this.logTxb.ShortcutsEnabled = false;
             this.logTxb.TextChanged += new System.EventHandler(this.logTxb_TextChanged);
             // 
             // logBookToolStrip
@@ -1582,76 +1646,13 @@
             resources.ApplyResources(this.logLbl, "logLbl");
             this.logLbl.Click += new System.EventHandler(this.logLbl_Click);
             // 
-            // lsBVisibleItemsBtn
-            // 
-            this.lsBVisibleItemsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.lsBVisibleItemsBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rollDegBtn,
-            this.pitchDegBtn,
-            this.toolStripSeparator40,
-            this.voltageVBtn,
-            this.depthmBtn,
-            this.temperaturedegCBtn,
-            this.pressuremBarBtn});
-            resources.ApplyResources(this.lsBVisibleItemsBtn, "lsBVisibleItemsBtn");
-            this.lsBVisibleItemsBtn.Name = "lsBVisibleItemsBtn";
-            // 
-            // pressuremBarBtn
-            // 
-            this.pressuremBarBtn.Checked = true;
-            this.pressuremBarBtn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.pressuremBarBtn.Name = "pressuremBarBtn";
-            resources.ApplyResources(this.pressuremBarBtn, "pressuremBarBtn");
-            this.pressuremBarBtn.Click += new System.EventHandler(this.pressuremBarBtn_Click);
-            // 
-            // temperaturedegCBtn
-            // 
-            this.temperaturedegCBtn.Checked = true;
-            this.temperaturedegCBtn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.temperaturedegCBtn.Name = "temperaturedegCBtn";
-            resources.ApplyResources(this.temperaturedegCBtn, "temperaturedegCBtn");
-            this.temperaturedegCBtn.Click += new System.EventHandler(this.temperaturedegCBtn_Click);
-            // 
-            // depthmBtn
-            // 
-            this.depthmBtn.Checked = true;
-            this.depthmBtn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.depthmBtn.Name = "depthmBtn";
-            resources.ApplyResources(this.depthmBtn, "depthmBtn");
-            this.depthmBtn.Click += new System.EventHandler(this.depthmBtn_Click);
-            // 
-            // voltageVBtn
-            // 
-            this.voltageVBtn.Checked = true;
-            this.voltageVBtn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.voltageVBtn.Name = "voltageVBtn";
-            resources.ApplyResources(this.voltageVBtn, "voltageVBtn");
-            this.voltageVBtn.Click += new System.EventHandler(this.voltageVBtn_Click);
-            // 
-            // toolStripSeparator40
-            // 
-            this.toolStripSeparator40.Name = "toolStripSeparator40";
-            resources.ApplyResources(this.toolStripSeparator40, "toolStripSeparator40");
-            // 
-            // pitchDegBtn
-            // 
-            this.pitchDegBtn.Name = "pitchDegBtn";
-            resources.ApplyResources(this.pitchDegBtn, "pitchDegBtn");
-            this.pitchDegBtn.Click += new System.EventHandler(this.pitchDegBtn_Click);
-            // 
-            // rollDegBtn
-            // 
-            this.rollDegBtn.Name = "rollDegBtn";
-            resources.ApplyResources(this.rollDegBtn, "rollDegBtn");
-            this.rollDegBtn.Click += new System.EventHandler(this.rollDegBtn_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.bottomToolStrip);
             this.Controls.Add(this.mainSplit);
             this.Controls.Add(this.mainToolStrip);
+            this.Controls.Add(this.bottomToolStrip);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "MainForm";
